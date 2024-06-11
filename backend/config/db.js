@@ -1,10 +1,10 @@
-const mysql = require('mysql2/promise')
+import mysql from "mysql2/promise";
 
 const mySqlPool = mysql.createPool({
-    host: "127.0.0.1",
-    user:"root",
-    password: "1320kpz2tvm",
-    database: "inventory",
+  host: "127.0.0.1",
+  user: "root",
+  password: "1557",
+  database: "inventory",
 });
 
-module.exports=mySqlPool;
+export default mySqlPool;
