@@ -1,0 +1,49 @@
+<div class="container">
+    <nav>
+      <form>
+        <select [(ngModel)]="selectedView" name="selectedView" class="view-select">
+          <option value="price">Price</option>
+          <option value="category">Category</option>
+        </select>
+        <select [(ngModel)]="searchText" name="searchText" class="view-select">
+          <ng-container *ngIf="selectedView === 'price'">
+            <option *ngFor="let price of prices" [value]="price">
+              {{ price }}
+            </option>
+          </ng-container>
+          <ng-container *ngIf="selectedView === 'category'">
+            <option *ngFor="let category of categories" [value]="category">
+              {{ category }}
+            </option>
+          </ng-container>
+        </select>
+        <button mat-raised-button color="accent"(click)="fetchData(selectedView,searchText)">Submit</button>
+      </form>
+    </nav>
+  </div>
+  <div class="shadow p-4 border">
+    <div class ="flex justify-between p-4">
+        <h2 class="text-xl font-semibold">Products</h2>
+    </div>
+    <table>
+        <thead>
+            <tr>
+                <th>Product ID</th>
+                <th>Product NAME</th>
+                <th>Product PRICE</th>
+                <th>Supplier ID</th>
+                <th>Category</th>
+            </tr>
+        </thead>
+        <tbody>
+            @for (product of products; track $index){
+            <tr>
+                <td>{{product.Prod_ID}}</td>
+                <td>{{product.name}}</td>
+                <td>{{product.Price}}</td>
+                <td>{{product.s_id}}</td>
+                <td>{{product.category}}</td>
+            </tr>
+            }
+        </tbody>
+    </table>  

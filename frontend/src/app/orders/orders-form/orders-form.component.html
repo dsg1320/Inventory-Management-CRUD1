@@ -1,0 +1,66 @@
+<div class="shadow border p-4">
+    @if(editUserId){
+      <h2 class="text-xl font-semibold">Update Order</h2>
+    }
+    @else{<h2 class="text-xl font-semibold">Add Order</h2>
+  }
+    <form [formGroup]="orderForm">
+        <div class="flex flex-wrap">
+          <ng-container *ngIf="editUserId">
+            <mat-form-field class="w-full">
+              <mat-label>Order_Id</mat-label>
+              <input type="text" matInput formControlName="Order_id" readonly />
+            </mat-form-field>
+          </ng-container>
+              <mat-form-field class="w-full">
+                <mat-label>Quantity</mat-label>
+                <input type="text" matInput formControlName="quantity"/>
+              </mat-form-field>
+              <mat-form-field class="w-full">
+                <mat-label>Amount</mat-label>
+                <input type="text" matInput formControlName="amount"/>
+              </mat-form-field>
+              <ng-container *ngIf="editUserId; else dropdown">
+                <mat-form-field class="w-full">
+                  <mat-label>Product</mat-label>
+                  <input type="text" matInput formControlName="prod_id" [readonly]="!!editUserId" />
+                </mat-form-field>
+              </ng-container>
+              <ng-template #dropdown>
+                <mat-form-field class="w-full">
+                  <mat-label>Product</mat-label>
+                  <mat-select formControlName="prod_id">
+                    <mat-option *ngFor="let product of products" [value]="product.name">
+                      {{ product.name }}
+                    </mat-option>
+                  </mat-select>
+                </mat-form-field>
+              </ng-template>
+              <ng-container *ngIf="editUserId; else dropdown1">
+                <mat-form-field class="w-full">
+                  <mat-label>Supplier</mat-label>
+                  <input type="text" matInput formControlName="sup_id" [readonly]="!!editUserId" />
+                </mat-form-field>
+              </ng-container>
+              <ng-template #dropdown1>
+                <mat-form-field class="w-full">
+                  <mat-label>Supplier</mat-label>
+                  <mat-select formControlName="sup_id">
+                    <mat-option *ngFor="let supplier of suppliers" [value]="supplier.name">
+                      {{ supplier.name }}
+                    </mat-option>
+                  </mat-select>
+                </mat-form-field>
+              </ng-template>
+        </div>
+        <div class="flex justify-center">
+          @if(editUserId){
+            <button mat-raised-button class="button-64" (click)="updateOrder()">Update</button>
+          }
+          @else{<button mat-raised-button class="button-64" (click)="addOrder()">Add</button>
+        }
+            
+        </div>
+    </form>
+
+</div>

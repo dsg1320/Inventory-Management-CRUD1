@@ -1,0 +1,33 @@
+<div class="shadow border p-4">
+    @if(editUserId){
+        <h2 class="text-xl font-semibold">Update Supplier</h2>
+    }
+    @else{<h2 class="text-xl font-semibold">Add Supplier</h2>
+}
+    <form [formGroup]="supplierForm">
+        <div class="flex flex-wrap">
+            <ng-container *ngIf="editUserId">
+                <mat-form-field class="w-full">
+                  <mat-label>Supplier_Id</mat-label>
+                  <input type="text" matInput formControlName="Suppl_id" readonly />
+                </mat-form-field>
+              </ng-container>
+              <mat-form-field class="w-full">
+                <mat-label>Name</mat-label>
+                <input type="text" matInput formControlName="name"/>
+              </mat-form-field>
+              <mat-form-field class="w-full">
+                <mat-label>Phone</mat-label>
+                <input type="text" matInput formControlName="phone"/>
+              </mat-form-field>
+        </div>
+        <div class="flex justify-center">
+            @if(editUserId){
+                <button mat-raised-button class="button-64" (click)="updateSupplier()">Update</button>
+            }
+            @else{<button mat-raised-button class="button-64" (click)="addSupplier()">Add</button>
+        }
+        </div>
+    </form>
+
+</div>

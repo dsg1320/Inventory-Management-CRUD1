@@ -1,0 +1,28 @@
+<div class="shadow p-4 border">
+    <div class ="flex justify-between p-4">
+        <h2 class="text-xl font-semibold">Supplier</h2>
+        <button mat-raised-button class="button-64" routerLink="/suppliers/add"> Add Supplier</button>
+    </div>
+    <table>
+        <thead>
+            <tr>
+                <th>Supplier ID</th>
+                <th>Supplier NAME</th>
+                <th>Phone Number</th>
+                <th>Action</th>
+            </tr>
+        </thead>
+        <tbody>
+            @for (sup of supplier; track $index){
+            <tr>
+                <td>{{sup.Suppl_id}}</td>
+                <td>{{sup.name}}</td>
+                <td>{{sup.phone}}</td>
+                <td>
+                    <button mat-raised-button class="button-54" [routerLink]="'/supplier/'+ sup.Suppl_id">Edit Supplier</button>
+                    <button mat-raised-button class="button-74"(click)="delete(sup.Suppl_id!)">Delete Supplier</button>
+                </td>
+            </tr>
+            }
+        </tbody>
+    </table>

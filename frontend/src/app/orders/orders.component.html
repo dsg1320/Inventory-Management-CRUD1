@@ -1,0 +1,33 @@
+<div class="shadow p-4 border">
+    <div class ="flex justify-between p-4">
+        <h2 class="text-xl font-semibold">Order</h2>
+        <button mat-raised-button class="button-64" routerLink="/orders/add" > Add Order</button>
+    </div>
+    <table>
+        <thead>
+            <tr>
+                <th>Order ID</th>
+                <th>Quantity</th>
+                <th>Amount</th>
+                <th>Product Id</th>
+                <th>Supplier Id</th>
+                <th>Actions</th>
+
+            </tr>
+        </thead>
+        <tbody>
+            @for (o of orderss; track $index){
+            <tr>
+                <td>{{o.Order_id}}</td>
+                <td>{{o.quantity}}</td>
+                <td>{{o.amount}}</td>
+                <td>{{o.productName}}</td>
+                <td>{{o.supplierName}}</td>
+                <td>
+                    <button mat-raised-button class="button-54" [routerLink]="'/order/' + o.Order_id">Edit Orders</button>
+                    <button mat-raised-button class="button-74"(click)="delete(o.Order_id!)">Delete Orders</button>
+                </td>
+            </tr>
+            }
+        </tbody>
+    </table>

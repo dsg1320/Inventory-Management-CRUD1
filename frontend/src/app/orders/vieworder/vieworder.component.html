@@ -1,0 +1,51 @@
+<div class="container">
+    <nav>
+      <form>
+        <select [(ngModel)]="selectedView" name="selectedView" class="view-select">
+          <option value="price">Price</option>
+          <option value="quantity">Quantity</option>
+        </select>
+        <select [(ngModel)]="searchText" name="searchText" class="view-select">
+          <ng-container *ngIf="selectedView === 'price'">
+            <option *ngFor="let price of prices" [value]="price">
+              {{ price }}
+            </option>
+          </ng-container>
+          <ng-container *ngIf="selectedView === 'quantity'">
+            <option *ngFor="let quantity of quantities" [value]="quantity">
+              {{ quantity }}
+            </option>
+          </ng-container>
+        </select>
+        <button mat-raised-button color="accent"(click)="fetchData(selectedView,searchText)">Submit</button>
+      </form>
+    </nav>
+  </div>
+  <div class="shadow p-4 border">
+    <div class ="flex justify-between p-4">
+        <h2 class="text-xl font-semibold">Order</h2>
+    </div>
+    <table>
+        <thead>
+            <tr>
+                <th>Order ID</th>
+                <th>Quantity</th>
+                <th>Amount</th>
+                <th>Product Id</th>
+                <th>Supplier Id</th>
+
+            </tr>
+        </thead>
+        <tbody>
+            @for (o of orders; track $index){
+            <tr>
+                <td>{{o.Order_id}}</td>
+                <td>{{o.quantity}}</td>
+                <td>{{o.amount}}</td>
+                <td>{{o.prod_id}}</td>
+                <td>{{o.sup_id}}</td>
+            </tr>
+            }
+        </tbody>
+    </table>
+
