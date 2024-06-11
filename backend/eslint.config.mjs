@@ -35,11 +35,12 @@ export default {
     "no-duplicate-imports": "error",
     "object-shorthand": "off",
     "prefer-template": "warn" ,    
-    "complexity": ["error", 10]
+    "complexity": ["error", 10],
+    "@typescript-eslint/no-var-requires": "off"
   },
   languageOptions: {
-  globals: {
-    console: "readonly",
-  },
-}
-}
+    globals: {
+      console: "readonly",
+    },
+  }
+};

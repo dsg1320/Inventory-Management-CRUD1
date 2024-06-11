@@ -1,10 +1,9 @@
-const express = require("express");
-const colors = require("colors");
-//const morgan = require("morgan");
-const dotenv = require("dotenv");
-const mySqlPool = require("./config/db");
-const cors = require("cors");
-//configure dotenv
+import express from "express";
+// import morgan from "morgan";
+import dotenv from "dotenv";
+import mySqlPool from "./config/db.js"; // Added .js extension
+import cors from "cors";
+import { env } from "process";
 dotenv.config();
 
 //rest object
@@ -17,20 +16,21 @@ app.use(express.json());
 //app.use(morgan("dev"));
 
 //routes
-app.use("/api/v1/inventory", require("./routes/inventoryRoutes"));
-app.get("/test",(req,res) => {
+import inventoryRoutes from "./routes/inventoryRoutes.js"; // Added .js extension
+app.use("/api/v1/inventory", inventoryRoutes);
+app.get("/test", (req, res) => {
   res.status(200).send("<hw>Welcome</h1>");
 });
 
 //port
-const PORT = process.env.PORT || 8000;
+const { PORT } = env;
 
 //conditionally Listen
 mySqlPool.query("SELECT 1").then(() => {
   console.log("MySQL DB Connected".bgCyan.white);
   //listen
-  app.listen(PORT,() => {
-    console.log(`Server Running on port ${process.env.PORT}`.bgMagenta.white);
+  app.listen(PORT, () => {
+    console.log(`Server Running on port ${PORT}`.bgMagenta.white);
   });
 })
   .catch((error) => {

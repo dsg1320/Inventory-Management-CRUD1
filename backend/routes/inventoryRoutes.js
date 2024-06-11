@@ -1,6 +1,27 @@
 import express from "express";
 //const express = require("express");
-const { getProducts, getproductbycategory, getSupplier, getOrder, getorderByPrice, getorderByQuantity, deleteprodbyid, deletesupplybyid, deleteorderbyid, exportToExcel, updateproduct, updatesupplier, updateorders, getproductbyPrice, insertOrder, insertsupplier, insertproduct, getproductbyID, getorderbyID, getsupplierbyID } = require("../controllers/inventoryController");
+import {
+  getProducts,
+  getproductbycategory,
+  getSupplier,
+  getOrder,
+  getorderByPrice,
+  getorderByQuantity,
+  deleteprodbyid,
+  deletesupplybyid,
+  deleteorderbyid,
+  exportToExcel,
+  updateproduct,
+  updatesupplier,
+  updateorders,
+  getproductbyPrice,
+  insertOrder,
+  insertsupplier,
+  insertproduct,
+  getproductbyID,
+  getorderbyID,
+  getsupplierbyID
+} from "../controllers/inventoryController";
 
 //router object
 const router = express.Router();
@@ -30,4 +51,4 @@ router.get("/getorder/:id",getorderbyID);
 router.get("/getsupplier/:id",getsupplierbyID);
 
 
-module.exports = router;
+export default router;
