@@ -21,8 +21,7 @@ import {
   getproductbyID,
   getorderbyID,
   getsupplierbyID
-} from "../controllers/inventoryController";
-
+} from "../controllers/inventoryController.js";
 //router object
 const router = express.Router();
 

@@ -27,10 +27,10 @@ const { PORT } = env;
 
 //conditionally Listen
 mySqlPool.query("SELECT 1").then(() => {
-  console.log("MySQL DB Connected".bgCyan.white);
+  console.log("MySQL DB Connected");
   //listen
   app.listen(PORT, () => {
-    console.log(`Server Running on port ${PORT}`.bgMagenta.white);
+    console.log(`Server Running on port ${PORT}`);
   });
 })
   .catch((error) => {
