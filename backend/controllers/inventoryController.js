@@ -435,6 +435,8 @@ const updateproduct= async(req,res)=>{
             })
         }
         const {name,category,Price,s_id} = req.body
+        const oldSupplierIdQuery = await db.query('SELECT s_id FROM product WHERE Prod_ID = ?', [id]);
+        const oldSupplierId = oldSupplierIdQuery[0][0].s_id;
         const da = await db.query('SELECT * FROM product WHERE Prod_ID =?',[id]);
         if(!da[0] || da[0].length==0){
             return res.status(500).send({
@@ -448,6 +450,12 @@ const updateproduct= async(req,res)=>{
                 success:false,
                 message:'Error in Update'
             });
+        }
+        console.log(oldSupplierId);
+        console.log(s_id);
+        if (oldSupplierId !== s_id) {
+            const updateOrdersQuery = await db.query('UPDATE orders SET sup_id = ? WHERE prod_id = ?', [s_id, id]);
+            console.log("Success")
         }
         res.status(200).send({
             success:true,

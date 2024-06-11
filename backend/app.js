@@ -1,6 +1,6 @@
 const express = require('express');
 const colors = require("colors");
-const morgan = require("morgan");
+//const morgan = require("morgan");
 const dotenv = require("dotenv");
 const mySqlPool = require('./config/db');
 var cors = require("cors");
@@ -14,7 +14,7 @@ const app = express();
 //middleware
 app.use(cors());
 app.use(express.json());
-app.use(morgan("dev"));
+//app.use(morgan("dev"));
 
 //routes
 app.use('/api/v1/inventory', require('./routes/inventoryRoutes'));
