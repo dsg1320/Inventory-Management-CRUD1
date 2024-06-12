@@ -544,6 +544,27 @@ export const updateorders = async(req,res) => {
     });
   }
 };
+const insertProductsIntoDatabase = async (products,res) => {
+  for (const product of products) {
+    const { name, Price, s_id, category } = product;
+    if (!name || !Price || !s_id || !category) {
+      return res.status(400).send({
+        success: false,
+        message: "Invalid product format"
+      });
+    }
+
+    const result = await db.query("INSERT INTO product (name, Price, s_id, category) VALUES (?,?,?,?)", [ product.name, product.Price, product.s_id, product.category]);
+        
+    if (!result || result.affectedRows === 0) {
+      return res.status(500).send({
+        success: false,
+        message: "Error inserting products"
+      });
+    }
+  }
+};
+
 
 export const insertproduct = async (req, res) => {
   try {
@@ -552,6 +573,7 @@ export const insertproduct = async (req, res) => {
     if (!Array.isArray(products)) {
       products = [products];
     }
+
     if(products.length === 0) {
       return res.status(400).send({
         success: false,
@@ -559,24 +581,7 @@ export const insertproduct = async (req, res) => {
       });
     }
 
-    for (const product of products) {
-      const { name, Price, s_id, category } = product;
-      if (!name || !Price || !s_id || !category) {
-        return res.status(400).send({
-          success: false,
-          message: "Invalid product format"
-        });
-      }
-
-      const result = await db.query("INSERT INTO product (name, Price, s_id, category) VALUES (?,?,?,?)", [ product.name, product.Price, product.s_id, product.category]);
-        
-      if (!result || result.affectedRows === 0) {
-        return res.status(500).send({
-          success: false,
-          message: "Error inserting products"
-        });
-      }
-    }
+    await insertProductsIntoDatabase(products,res);
     res.status(201).send({
       success: true,
       message: "Products inserted successfully"
@@ -626,7 +631,26 @@ export const insertpro = async (req, res) => {
   }
 };
 
+const insertintoorderdatabase = async(orders,res) => {
+  for (const order of orders) {
+    const { quantity, amount,prod_id, sup_id } = order;
+    if (!quantity || !amount || !prod_id || !sup_id) {
+      return res.status(400).send({
+        success: false,
+        message: "Invalid product format"
+      });
+    }
 
+    const result = await db.query("INSERT INTO orders (quantity, amount,prod_id, sup_id) VALUES (?,?,?,?)", [order.quantity,order.amount,order.prod_id,order.sup_id]);
+      
+    if (!result || result.affectedRows) {
+      return res.status(500).send({
+        success: false,
+        message: "Error inserting products"
+      });
+    }
+  }
+};
 
 
 export const insertOrder = async(req, res) => {
@@ -642,25 +666,7 @@ export const insertOrder = async(req, res) => {
         message: "No products provided in the request body or invalid format"
       });
     }
-
-    for (const order of orders) {
-      const { quantity, amount,prod_id, sup_id } = order;
-      if (!quantity || !amount || !prod_id || !sup_id) {
-        return res.status(400).send({
-          success: false,
-          message: "Invalid product format"
-        });
-      }
-
-      const result = await db.query("INSERT INTO orders (quantity, amount,prod_id, sup_id) VALUES (?,?,?,?)", [order.quantity,order.amount,order.prod_id,order.sup_id]);
-        
-      if (!result || result.affectedRows) {
-        return res.status(500).send({
-          success: false,
-          message: "Error inserting products"
-        });
-      }
-    }
+    await insertintoorderdatabase(orders,res);
     res.status(201).send({
       success: true,
       message: "Products inserted successfully"
