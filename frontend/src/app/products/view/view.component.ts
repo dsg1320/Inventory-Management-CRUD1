@@ -30,7 +30,6 @@ export class ViewComponent implements OnInit{
       this.attributes = attributes;
       this.prices = [...new Set(attributes.map(attr => attr.Price))];
       this.categories = [...new Set(attributes.map(attr => attr.category))];
-      console.log(attributes);
     }, error => {
       console.error('Error fetching data:', error);
     });

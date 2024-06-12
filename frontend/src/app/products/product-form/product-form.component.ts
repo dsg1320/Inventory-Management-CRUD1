@@ -46,7 +46,7 @@ export class ProductFormComponent implements OnInit {
     if(this.editUserId){
       this.productService.getProduct(this.editUserId).subscribe((result:Product[])=>{
         const supplier = this.suppliers.find(s => s.Suppl_id === result[0].s_id);
-        console.log("result:" , result[0])
+        //console.log("result:" , result[0])
         this.userForm.patchValue({
           Prod_ID: result[0].Prod_ID,
           name: result[0].name,

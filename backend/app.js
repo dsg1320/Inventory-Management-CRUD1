@@ -1,5 +1,5 @@
 const express = require('express');
-//const colors = require("colors");
+const colors = require("colors");
 const morgan = require("morgan");
 const dotenv = require("dotenv");
 const mySqlPool = require('./config/db');
@@ -23,6 +23,7 @@ app.get('/test',(req,res)=>{
 });
 
 //port
+// eslint-disable-next-line no-undef
 const PORT = process.env.PORT || 8000;
 
 //conditionally Listen
@@ -30,6 +31,7 @@ mySqlPool.query('SELECT 1').then(()=>{
     console.log("MySQL DB Connected".bgCyan.white);
     //listen
     app.listen(PORT,()=>{
+        // eslint-disable-next-line no-undef
         console.log(`Server Running on port ${process.env.PORT}`.bgMagenta.white);
     });
 })

@@ -15,6 +15,10 @@
         "plugin:@angular-eslint/template/process-inline-templates"
       ],
       "rules": {
+        "no-debugger":"warn",
+        "@typescript-eslint/consistent-type-definitions": "off",
+        //"@typescript-eslint/consistent-type-definitions": ["error", "interface"],
+        "no-console":["error",{"allow":["error"]}],
         "@angular-eslint/directive-selector": [
           "error",
           {

@@ -20,38 +20,22 @@
                 <mat-label>Amount</mat-label>
                 <input type="text" matInput formControlName="amount"/>
               </mat-form-field>
-              <ng-container *ngIf="editUserId; else dropdown">
-                <mat-form-field class="w-full">
-                  <mat-label>Product</mat-label>
-                  <input type="text" matInput formControlName="prod_id" [readonly]="!!editUserId" />
-                </mat-form-field>
-              </ng-container>
-              <ng-template #dropdown>
-                <mat-form-field class="w-full">
-                  <mat-label>Product</mat-label>
-                  <mat-select formControlName="prod_id">
-                    <mat-option *ngFor="let product of products" [value]="product.name">
-                      {{ product.name }}
-                    </mat-option>
-                  </mat-select>
-                </mat-form-field>
-              </ng-template>
-              <ng-container *ngIf="editUserId; else dropdown1">
-                <mat-form-field class="w-full">
-                  <mat-label>Supplier</mat-label>
-                  <input type="text" matInput formControlName="sup_id" [readonly]="!!editUserId" />
-                </mat-form-field>
-              </ng-container>
-              <ng-template #dropdown1>
-                <mat-form-field class="w-full">
-                  <mat-label>Supplier</mat-label>
-                  <mat-select formControlName="sup_id">
-                    <mat-option *ngFor="let supplier of suppliers" [value]="supplier.name">
-                      {{ supplier.name }}
-                    </mat-option>
-                  </mat-select>
-                </mat-form-field>
-              </ng-template>
+              <mat-form-field class="w-full">
+                <mat-label>Product</mat-label>
+                <mat-select formControlName="prod_id">
+                  <mat-option *ngFor="let Product of products" [value]="Product.name">
+                    {{ Product.name }}
+                  </mat-option>
+                </mat-select>
+              </mat-form-field>
+              <mat-form-field class="w-full">
+              <mat-label>Supplier</mat-label>
+              <mat-select formControlName="sup_id">
+                <mat-option *ngFor="let supplier of suppliers" [value]="supplier.name">
+                  {{ supplier.name }}
+                </mat-option>
+              </mat-select>
+            </mat-form-field>
         </div>
         <div class="flex justify-center">
           @if(editUserId){

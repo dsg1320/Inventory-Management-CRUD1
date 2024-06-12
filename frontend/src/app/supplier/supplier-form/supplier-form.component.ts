@@ -30,7 +30,6 @@ export class SupplierFormComponent implements OnInit {
     this.editUserId=this.route.snapshot.params["id"];
     if(this.editUserId){
       this.supplierService.getSupplierbyID(this.editUserId).subscribe((result:Supplier[])=>{
-        console.log("result:" , result[0])
         this.supplierForm.patchValue(result[0]);
       });
     }

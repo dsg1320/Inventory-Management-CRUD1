@@ -45,7 +45,7 @@ export class OrdersFormComponent implements OnInit{
     this.editUserId=this.route.snapshot.params["id"];
     if(this.editUserId){
       this.orderService.getOrder(this.editUserId).subscribe((result:Orders[])=>{
-        console.log("result:" , result[0])
+        //console.log("result:" , result[0])
         const supplier = this.suppliers.find(s => s.Suppl_id === result[0].sup_id);
         const product = this.products.find(p => p.Prod_ID === result[0].prod_id);
         this.orderForm.patchValue({

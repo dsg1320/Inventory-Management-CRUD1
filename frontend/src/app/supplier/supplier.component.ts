@@ -18,7 +18,6 @@ export class SupplierComponent implements OnInit{
   ngOnInit(){
     this.supplierservice.getSupplier().subscribe(result => {
       this.supplier=result;
-      console.log(this.supplier);
     })
   }
   delete(id: number){

@@ -24,22 +24,14 @@
               <mat-label>Price</mat-label>
               <input type="text" matInput formControlName="Price"/>
             </mat-form-field>
-            <ng-container *ngIf="editUserId; else dropdown">
-              <mat-form-field class="w-full">
-                <mat-label>Suppliercd</mat-label>
-                <input type="text" matInput formControlName="s_id" [readonly]="!!editUserId" />
-              </mat-form-field>
-            </ng-container>
-            <ng-template #dropdown>
-              <mat-form-field class="w-full">
-                <mat-label>Supplier</mat-label>
-                <mat-select formControlName="s_id">
-                  <mat-option *ngFor="let supplier of suppliers" [value]="supplier.name">
-                    {{ supplier.name }}
-                  </mat-option>
-                </mat-select>
-              </mat-form-field>
-            </ng-template>
+            <mat-form-field class="w-full">
+              <mat-label>Supplier</mat-label>
+              <mat-select formControlName="s_id">
+                <mat-option *ngFor="let supplier of suppliers" [value]="supplier.name">
+                  {{ supplier.name }}
+                </mat-option>
+              </mat-select>
+            </mat-form-field>
       </div>
       <div class="flex justify-center">
         @if(editUserId){

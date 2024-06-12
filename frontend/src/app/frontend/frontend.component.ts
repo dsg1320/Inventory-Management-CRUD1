@@ -15,7 +15,7 @@ export class FrontendComponent {
 
   onSubmit() {
     // Do something with the subView value, for example:
-    console.log('Sub-view entered by the user:', this.subView);
+    //console.log('Sub-view entered by the user:', this.subView);
     
     // Clear the input field
     this.subView = '';

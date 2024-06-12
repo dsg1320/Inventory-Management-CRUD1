@@ -30,7 +30,6 @@ export class ProductsComponent implements OnInit {
           supplierName: this.getSupplierNameById(product.s_id) || 'Unknown'
         }));
         //this.productss = result;
-        console.log(this.productss);
         //this.mapProductsToSupplierNames(result);
       });
     });
