@@ -6,6 +6,7 @@ import Product from '../../types/product';
 import { SubViewService } from '../../services/sub-view.service';
 import attribute from '../../types/prod_attribut';
 import { CommonModule } from '@angular/common';
+import Supplier from '../../types/supplier';
 
 @Component({
   selector: 'app-view',
@@ -21,6 +22,7 @@ export class ViewComponent implements OnInit{
   attributes:attribute[]=[];
   prices: number[]=[];
   categories: string[]=[];
+  suppliers: Supplier[] = [];
 
   constructor(private subViewService: SubViewService) {} // Inject the service
 
@@ -33,12 +35,21 @@ export class ViewComponent implements OnInit{
     }, error => {
       console.error('Error fetching data:', error);
     });
+
+    this.subViewService.getSupplier().subscribe(suppliers => {
+      this.suppliers = suppliers;
+    }, error => {
+      console.error('Error fetching suppliers:', error);
+    });
   }
 
   fetchData(selectedView: string, searchText: string) {
     this.subViewService.getProductsView(selectedView, searchText) // Pass view and searchText
       .subscribe(products => {
-        this.products = products;
+        this.products = products.map(product => ({
+          ...product,
+          supplierName: this.suppliers.find(supplier => supplier.Suppl_id === product.s_id)?.name || 'Unknown'
+        }));
       }, error => {
         // Handle API errors gracefully (optional: display error message)
         console.error('Error fetching data:', error);

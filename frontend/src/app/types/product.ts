@@ -4,4 +4,5 @@ export default interface Product{
     Price: number,
     s_id: number,
     category: string
+    supplierName?:string;
 }
